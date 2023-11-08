@@ -1,4 +1,4 @@
-package com.bignerdranch.android.geoquiz
+package com.example.android.wherethehoops
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
