@@ -8,7 +8,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.bignerdranch.android.geoquiz"
+        applicationId "com.example.android.WhereTheHoops"
         minSdkVersion 24
         targetSdkVersion 32
         versionCode 1
