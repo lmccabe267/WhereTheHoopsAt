@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary"> #0000FF</color>
+    <color name="colorPrimaryDark">#800080</color>
+    <color name="colorAccent">#FFC0CB</color>
+    <color name="purple">#FF370083</color>
+    <color name="teal">#FF018786</color>
+    <color name="lavender">#*692f7</color>
 </resources>
