@@ -5,10 +5,7 @@
     <color name="colorPrimary"> #0000FF</color>
     <color name="colorPrimaryDark">#800080</color>
     <color name="colorAccent">#FFC0CB</color>
-<<<<<<< HEAD
     <color name="purple">#FF370083</color>
     <color name="teal">#FF018786</color>
-    <color name="lavender">#*692f7</color>
-=======
->>>>>>> origin/Estevan
+    <color name="orange">#FFA500</color>
 </resources>
