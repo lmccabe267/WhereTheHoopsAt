@@ -15,7 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        android:cardCornerRadius="30dp"
         app:cardElevation="20dp">
 
         <LinearLayout
@@ -55,14 +54,14 @@
                 android:layout_marginTop="20dp"
                 android:inputType="textPassword"
                 android:padding="8dp"
-                android:hint="Password"
+                android:hint="@string/password_text"
                 android:drawableLeft="@drawable/lock_image"
                 android:textColor="@color/black"
                 android:drawablePadding="8dp"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="Login"
+                android:text="@string/login_text"
                 android:id="@+id/loginButton"
                 android:textSize="18sp"
                 android:layout_marginTop="30dp"
