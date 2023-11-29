@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "778340562942",
+    "project_id": "wherethehoopsat",
+    "storage_bucket": "wherethehoopsat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778340562942:android:325f06225cde7b72f0b2af",
+        "android_client_info": {
+          "package_name": "com.example.android.WhereTheHoops"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJFFLLMNaKzp2NuCWlVS0yQpwtkxRORss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778340562942:android:bfb3b32a4214c1b3f0b2af",
+        "android_client_info": {
+          "package_name": "com.example.android.WhereTheHoops"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJFFLLMNaKzp2NuCWlVS0yQpwtkxRORss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
