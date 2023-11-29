@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Where The Hoops At</string>
+    <string name="login_text">Login</string>
+    <string name="checkin_text">Check In</string>
+    <string name="checkout_text">Check Out</string>
+    <string name="username_text">Username</string>
+    <string name="password_text">Password</string>
+    <string name="PlayerCount_text">Players:</string>
 </resources>
