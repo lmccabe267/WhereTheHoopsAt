@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         logo.startAnimation(bottomAnim)
 
         Handler().postDelayed({
-            val intent = Intent(this, Dashboard::class.java)
+            val intent = Intent(this, Home::class.java)
             startActivity(intent)
             finish()
         }, SPLASH_SCREEN)
