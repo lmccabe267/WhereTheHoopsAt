@@ -32,6 +32,7 @@ class TestCourt : AppCompatActivity() {
         playerCount = sharedPreferences.getInt(KEY_PLAYER_COUNT, 0)
 
         updatePlayerCountText()
+        updateButtonVisibility()
 
         checkInButton.setOnClickListener {
             performCheckIn()
@@ -43,27 +44,46 @@ class TestCourt : AppCompatActivity() {
     }
 
     private fun performCheckIn() {
-        with(sharedPreferences.edit()) {
-            playerCount++
-            putInt(KEY_PLAYER_COUNT, playerCount)
-            apply()
-        }
-        updatePlayerCountText()
-        updateButtonVisibility(true)
+        if (playerCount < COURT_CAPACITY) {
+            with(sharedPreferences.edit()) {
+                playerCount++
+                putInt(KEY_PLAYER_COUNT, playerCount)
+                apply()
+            }
+            updatePlayerCountText()
+            updateButtonVisibility()
 
-        if (playerCount >= COURT_CAPACITY) {
-            sendCourtFullNotification()
-        }
+            if (playerCount >= COURT_CAPACITY) {
+                sendCourtFullNotification()
+            }
 
-        Toast.makeText(this, "Checked in", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Checked in", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "Court is full. Cannot check in.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun performCheckOut() {
+        if (playerCount > 0) {
+            with(sharedPreferences.edit()) {
+                playerCount--
+                putInt(KEY_PLAYER_COUNT, playerCount)
+                apply()
+            }
+            updatePlayerCountText()
+            updateButtonVisibility()
+            Toast.makeText(this, "Checked out", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "No users to check out.", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun sendCourtFullNotification() {
         createNotificationChannel()
 
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_notification)
-            .setContentTitle("Court Full!")
+            .setSmallIcon(R.drawable.basketball)
+            .setContentTitle("Court is full!")
             .setContentText("The court is full! No more check-ins allowed.")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
@@ -88,20 +108,9 @@ class TestCourt : AppCompatActivity() {
         }
     }
 
-    private fun performCheckOut() {
-        with(sharedPreferences.edit()) {
-            playerCount--
-            putInt(KEY_PLAYER_COUNT, playerCount)
-            apply()
-        }
-        updatePlayerCountText()
-        updateButtonVisibility(false)
-        Toast.makeText(this, "Checked out", Toast.LENGTH_SHORT).show()
-    }
-
-    private fun updateButtonVisibility(checkedIn: Boolean) {
-        checkInButton.isEnabled = !checkedIn
-        checkOutButton.isEnabled = checkedIn
+    private fun updateButtonVisibility() {
+        checkInButton.isEnabled = playerCount < COURT_CAPACITY
+        checkOutButton.isEnabled = playerCount > 0
     }
 
     private fun updatePlayerCountText() {
