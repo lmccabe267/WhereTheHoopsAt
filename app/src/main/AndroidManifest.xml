@@ -18,7 +18,7 @@
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Dashboard"
+            android:name=".Bric"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity

@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@drawable/court"
-    tools:context=".Dashboard">
+    tools:context=".Bric">
 
 
     <androidx.cardview.widget.CardView

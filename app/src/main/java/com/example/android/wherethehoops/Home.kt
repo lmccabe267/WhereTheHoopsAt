@@ -25,7 +25,7 @@ class Home : AppCompatActivity() {
     }
 
     private fun openDashboard() {
-        val intent = Intent(this, Dashboard::class.java)
+        val intent = Intent(this, Bric::class.java)
         startActivity(intent)
     }
 
