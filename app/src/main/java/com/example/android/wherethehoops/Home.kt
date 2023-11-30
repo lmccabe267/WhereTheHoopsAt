@@ -7,6 +7,8 @@ import android.widget.Button
 
 class Home : AppCompatActivity() {
     private lateinit var button: Button
+    private lateinit var button2: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -15,10 +17,20 @@ class Home : AppCompatActivity() {
         button.setOnClickListener {
             openDashboard()
         }
+
+        button2 = findViewById(R.id.testButton)
+        button2.setOnClickListener {
+            openTest()
+        }
     }
 
     private fun openDashboard() {
         val intent = Intent(this, Dashboard::class.java)
+        startActivity(intent)
+    }
+
+    private fun openTest() {
+        val intent = Intent(this, TestCourt::class.java)
         startActivity(intent)
     }
 }
