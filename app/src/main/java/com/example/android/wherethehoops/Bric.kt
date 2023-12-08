@@ -98,7 +98,7 @@ class Bric : AppCompatActivity() {
 
     }
     private fun deleteUser(){
-        myReference.child("Users").child("Player2").removeValue()
+        myReference.child("Users").child("Players2").removeValue()
     }
     private fun dataChanged(callback: (Int) -> Unit) {
         val databaseRef: DatabaseReference = myReference.child("Users")
