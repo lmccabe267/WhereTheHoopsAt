@@ -53,6 +53,12 @@
                 android:layout_marginTop="30dp"
                 android:backgroundTint="@color/brown"
                 app:cornerRadius = "20dp"/>
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:hint="Enter Username" />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

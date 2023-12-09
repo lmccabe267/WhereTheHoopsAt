@@ -4,9 +4,10 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
-import androidx.activity.viewModels
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -18,6 +19,7 @@ class Bric : AppCompatActivity() {
     private lateinit var checkInButton: Button
     private lateinit var checkOutButton: Button
     private lateinit var playerCount: TextView
+    private lateinit var editText: EditText
     private lateinit var sharedPreferences: SharedPreferences
     private val bricViewModel: BricViewModel by viewModels()
     private lateinit var database : FirebaseDatabase
@@ -33,10 +35,12 @@ class Bric : AppCompatActivity() {
         checkInButton = findViewById(R.id.checkInButton)
         checkOutButton = findViewById(R.id.checkOutButton)
         playerCount = findViewById(R.id.counter_text)
-        sharedPreferences = getPreferences(Context.MODE_PRIVATE)
+        editText = findViewById(R.id.editText)
+        sharedPreferences = getPreferences(MODE_PRIVATE)
         val checkedIn = sharedPreferences.getBoolean(KEY_CHECKED_IN, false)
         database = FirebaseDatabase.getInstance()
         myReference = database.reference
+
         //bricViewModel.count = sharedPreferences.getInt(KEY_COUNT, dataBeginning())
 
         updateButtonVisibility(checkedIn)
@@ -58,7 +62,8 @@ class Bric : AppCompatActivity() {
 
     private fun performCheckIn() {
         bricViewModel.checkIn()
-        writeNewUser()
+        val name = editText.text.toString()
+        writeNewUser(name)
         dataChanged { value ->
             playerCount.text = value.toString()
             with(sharedPreferences.edit()) {
@@ -73,7 +78,8 @@ class Bric : AppCompatActivity() {
 
     private fun performCheckOut() {
         bricViewModel.checkOut()
-        deleteUser()
+        val name = editText.text.toString()
+        deleteUser(name)
         dataChanged { value ->
             playerCount.text = value.toString()
             with(sharedPreferences.edit()) {
@@ -92,13 +98,19 @@ class Bric : AppCompatActivity() {
         checkOutButton.isEnabled = checkedIn
     }
 
-    private fun writeNewUser(){
-        myReference.child("Users").child("Players2").setValue("user")
+    private fun writeNewUser(name: String){
+        if (name.isNotEmpty() && isValidName(name)) {
+            myReference.child("Users").child(name).setValue("user")
+        } else {
+            // Handle invalid name (optional)
+            println("Invalid user name")
+        }
 
 
     }
-    private fun deleteUser(){
-        myReference.child("Users").child("Players2").removeValue()
+    private fun deleteUser(name: String){
+
+        myReference.child("Users").child(name).removeValue()
     }
     private fun dataChanged(callback: (Int) -> Unit) {
         val databaseRef: DatabaseReference = myReference.child("Users")
@@ -129,6 +141,29 @@ class Bric : AppCompatActivity() {
                 // Handle errors that occur during the read operation
             }
         })
+    }
+    private fun isValidName(name: String): Boolean{
+        val usersReference = myReference.child("Users")
+
+        // Check if the user already exists
+        usersReference.child(name).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // User already exists
+                    println("User with name $name already exists")
+                } else {
+                    // User doesn't exist, proceed to add the new user
+                    usersReference.child(name).setValue("user")
+                    println("User $name added successfully")
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+    })
+        return true
     }
 
 
